@@ -1,63 +1,111 @@
-stuff:
-- 3x3 grid
-- button 
-- each tile is clickable
-- can't click tile with x or o already in it
-- switches turns between x and o
-- controller needs to know more than one winning condition, how to structure the wins
-- what happens when there is a tie
-- 3 elements that need to be built (title, grid, button)
-- game should let players know who's turn it is
-- tiles can't be clicked after someone wins
-- one view class that handles all of the builds: a view that has a build title, build board, build button 
-- data structures!!!!
-- all constant values : stored in a singleton file, list things like title, string for button at bottom, things to store that you are going to use (all constant keys are capital ex: APP_TITLE), can pull this into main.js to use....can also hold array of info
-- local storage for storing wins for each player
-- extra: code connect5 ???
+MODEL::::::
+- constructor : set all properties 
+    * this.tile1 = '';
+    * this.tile2 = '';
+    * this.tile3 = '';
+    * this.tile4 = '';
+    * this.tile5 = '';
+    * this.tile6 = '';
+    * this.tile7 = '';
+    * this.tile8 = '';
+    * this.tile9 = '';
+    * this.gameOver = false; ??
+    * this.score = 0;
+    * this.turn = player1; 
 
-possible win conditions stored into an array of arrays:
-- horizontal wins: 3
-- vertical wins: 3
-- diagonal wins: 2
+- board =   [tile1, tile2, tile3,
+            tile4, tile5, tile6,
+            tile7, tile8, tile9]
 
-~ let win_cond = [[0, 1, 2],[3, 4, 5],[6, 7, 8]] **numbers represent an id to call on each tile
-~ compare board state to winning conditions
+- tile state: 
+    * letter: o
+    * letter: x
+    * letter: none
+    
+    For each tile:
+    * setTile1(letter) : this.tile1 = letter
+    * getTile1 : return this.tile1
 
-Model:
-- title (const)
-- win conditions (const)
-- tile states (empty or x or o) for each player
-- player turns (boolean or just player1 / player2...switches from one player to another: light switch.... if (turn=true) --> x's turn, if (turn = false) --> o's turn; switch boolean/players for turn on grid click)
-- score: starts at zero
-- board []
-- container over board 
-- setStates 
-- getStates
-- end of game = false
+    setBoard(letter): sets the letter of each tile after clicked
+        this.tile1 = letter.tile1;
+        this.tile2 = letter.tile2;
+        this.tile3 = letter.tile3;
+        this.tile4 = letter.tile4;
+        this.tile5 = letter.tile5;
+        this.tile6 = letter.tile6;
+        this.tile7 = letter.tile7;
+        this.tile8 = letter.tile8;
+        this.tile9 = letter.tile9;
+    
+- Whose turn is it? 
+    * player 1
+    * player 2
+    * ^ two different instances of a player object? 
+    * switches from one player to another (like light switch): 
+            1. player 1's turn to start
+            2. player 1 play's (clicks one of the tiles)
+            3. turn is updated to player2
+            {
+                IF (turn === player1) 
+                    THEN on click of tile
+                        update turn ===> player2
 
-View:
-- query selector 'app'
-- render title
-- render board
-- render buttons
-- render restart button
-- initialize event listeners over tile
-- initialize event listener over container...contains a counter for clicks
+                ELSE IF (turn === player2)
+                    THEN on click of tile
+                        update turn ===> player1
+            }
 
-Controller:
-- if clicks > 5 --> compare tile states to winner conditions for each player, if no one wins --> tie
-- what happens when someone wins? loops tile states to compare to winning condition possibilities
-- handle event listeners (ex:  switching turns, displaying x or o after click)
-- when someone wins
-- after tile is clicked? turns event listeners off after tile is clicked (once true?), switch turn boolean, and display x or o
-- start/initialize game
-- counter over container for total clicks
-- how to end game
+- title: const
+- 8 win conditions: const tile sequences:
+1, 2, 3
+4, 5, 6
+7, 8, 9
+1, 4, 7
+2, 5, 8
+3, 6, 9
+3, 5, 7
+1, 5, 9
 
-Button grid: 
-- array of buttons 
+VIEW:::::::
+- get div by id
+- create:
+    * h1 for title
+    * container div for board ?
+    * 9 buttons for grid
+    * reset / new game button
+- initialize event listeners
+    * for each tile: waiting for click
+    * for board container: waiting for / counting clicks
+- textContent for tiles ?
 
-Player class in mode: 
-- two instances of players 
-- holds their plays
-- x or o 
+CONTROLLER:::::::
+- display x or o after click: 
+    IF this.player = player1
+        THEN display x on click
+        AND update model: this.m.setTile#
+        AND turn off event listener for tile#
+    ELSE IF this.player = player2
+        THEN display o on click
+        AND update model: this.m.setTile#
+        AND turn off event listener for tile#
+
+- check for a win
+    1. IF boardClicks >= 5
+        THEN winCheck
+
+    2. winCheck: compare tile states from model to winning conditions
+    * For each win combo: 
+        IF tile1 has a letter
+            THEN check to see if tile1, tile2, and tile3 are equal 
+             RETURNS true? win & gameOver = true;
+             RETURNS false? not a win
+    * Player would have changed after click of tile, thus winner is the opposite player ? easier way?
+
+    3. IF boardClicks = 9
+        THEN gameOver = true 
+            AND display 'TIE'
+
+- gameOver :
+    * Bootstrap modal:
+    'Player 1 wins!'
+    * clears board tiles
