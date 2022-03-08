@@ -12,6 +12,8 @@ stuff:
 - one view class that handles all of the builds: a view that has a build title, build board, build button 
 - data structures!!!!
 - all constant values : stored in a singleton file, list things like title, string for button at bottom, things to store that you are going to use (all constant keys are capital ex: APP_TITLE), can pull this into main.js to use....can also hold array of info
+- local storage for storing wins for each player
+- extra: code connect5 ???
 
 possible win conditions stored into an array of arrays:
 - horizontal wins: 3
