@@ -20,4 +20,41 @@ possible win conditions stored into an array of arrays:
 - vertical wins: 3
 - diagonal wins: 2
 
-~ let win_cond = [[0, 1, 2][3, 4, 5][6, 7, 8]] **numbers represent an id to call on each tile
+~ let win_cond = [[0, 1, 2],[3, 4, 5],[6, 7, 8]] **numbers represent an id to call on each tile
+
+Model:
+- title (const)
+- win conditions (const)
+- tile states (empty or x or o) for each player
+- player turns (boolean...switches from one player to another: light switch.... if (turn=true) --> x's turn, if (turn = false) --> o's turn; switch boolean for turn on grid click)
+- score: starts at zero
+- board []
+- container over board 
+- setStates 
+- getStates
+
+View:
+- query selector 'app'
+- render title
+- render board
+- render buttons
+- render restart button
+- initialize event listeners over tile
+- initialize event listener over container...contains a counter for clicks
+
+Controller:
+- if clicks > 5 --> compare tile states to winner conditions for each player, if no one wins --> tie
+- what happens when someone wins? loops tile states to compare to winning condition possibilities
+- handle event listeners (ex:  switching turns, displaying x or o after click)
+- when someone wins
+- after tile is clicked? turns event listeners off after tile is clicked (once true?), switch turn boolean, and display x or o
+- start/initialize game
+- counter over container for total clicks
+
+Button grid: 
+- array of buttons 
+
+Player class in mode: 
+- two instances of players 
+- holds their plays
+- x or o 
