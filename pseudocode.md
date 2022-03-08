@@ -66,6 +66,7 @@ MODEL::::::
 3, 5, 7
 1, 5, 9
 
+
 VIEW:::::::
 - get div by id
 - create:
@@ -78,16 +79,17 @@ VIEW:::::::
     * for board container: waiting for / counting clicks
 - textContent for tiles ?
 
+
 CONTROLLER:::::::
-- display x or o after click: 
+- display x or o after click of tile#: 
     IF this.player = player1
         THEN display x on click
-        AND update model: this.m.setTile#
-        AND turn off event listener for tile#
+            AND update model: this.m.setTile#
+            AND turn off event listener for tile#
     ELSE IF this.player = player2
         THEN display o on click
-        AND update model: this.m.setTile#
-        AND turn off event listener for tile#
+            AND update model: this.m.setTile#
+            AND turn off event listener for tile#
 
 - check for a win
     1. IF boardClicks >= 5
