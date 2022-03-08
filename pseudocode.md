@@ -21,17 +21,19 @@ possible win conditions stored into an array of arrays:
 - diagonal wins: 2
 
 ~ let win_cond = [[0, 1, 2],[3, 4, 5],[6, 7, 8]] **numbers represent an id to call on each tile
+~ compare board state to winning conditions
 
 Model:
 - title (const)
 - win conditions (const)
 - tile states (empty or x or o) for each player
-- player turns (boolean...switches from one player to another: light switch.... if (turn=true) --> x's turn, if (turn = false) --> o's turn; switch boolean for turn on grid click)
+- player turns (boolean or just player1 / player2...switches from one player to another: light switch.... if (turn=true) --> x's turn, if (turn = false) --> o's turn; switch boolean/players for turn on grid click)
 - score: starts at zero
 - board []
 - container over board 
 - setStates 
 - getStates
+- end of game = false
 
 View:
 - query selector 'app'
@@ -50,6 +52,7 @@ Controller:
 - after tile is clicked? turns event listeners off after tile is clicked (once true?), switch turn boolean, and display x or o
 - start/initialize game
 - counter over container for total clicks
+- how to end game
 
 Button grid: 
 - array of buttons 
