@@ -77,7 +77,16 @@ VIEW:::::::
 - initialize event listeners
     * for each tile: waiting for click
     * for board container: waiting for / counting clicks
-- textContent for tiles ?
+- display textContent for each tile
+        this.tile1.textContent = x or o;
+        this.tile2.textContent = x or o;
+        this.tile3.textContent = x or o;
+        this.tile4.textContent = x or o;
+        this.tile5.textContent = x or o;
+        this.tile6.textContent = x or o;
+        this.tile7.textContent = x or o;
+        this.tile8.textContent = x or o;
+        this.tile9.textContent = x or o;
 
 
 CONTROLLER:::::::
