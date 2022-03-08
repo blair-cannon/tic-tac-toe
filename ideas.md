@@ -68,3 +68,7 @@ checking winning conditions:
 - is there a value in 1;
     - if there is then check to see if tile1 = tile2 = tile3
         - if that is true, then player has won 
+
+* research
+    - array.some() --> https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/some 
+    - mvc --> https://www.freecodecamp.org/news/the-model-view-controller-pattern-mvc-architecture-and-frameworks-explained/ 
