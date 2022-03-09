@@ -1,0 +1,5 @@
+button {
+    height: 50px;
+    width: 50px;
+     vertical-align: top; /* buttons to not move on click */
+}

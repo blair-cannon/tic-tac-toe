@@ -120,3 +120,9 @@ CONTROLLER:::::::
     * Bootstrap modal:
     'Player 1 wins!'
     * clears board tiles
+
+
+TO DO LIST: 
+    * switch players
+    * switch between x and o
+    * reset game

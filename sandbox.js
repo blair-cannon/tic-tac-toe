@@ -33,7 +33,7 @@ const createBoard = () => {
   tbl.setAttribute("border", "2");   // sets the border of tbl, without table is just data without any lines
 }
 createBoard();
-
+createBoard();
 
 
 
@@ -42,21 +42,21 @@ createBoard();
 // let board = ['o', 'x', 'o', 'x', 'x', 'x', 'o', 'o', 'x']; // should win, check is true
 let board = ['o', 'x', 'o', 'x', 'x', 'o', 'x', 'o', 'x'] // should lose, check is false
 
-let winConditions = [
-  [0, 1, 2],
-  [3, 4, 5],
-  [6, 7, 8],
-  [0, 3, 6],
-  [1, 4, 7], 
-  [2, 5, 8], 
-  [0, 4, 8],
-  [2, 4, 6]
-];
+// let winConditions = [
+//   [0, 1, 2],
+//   [3, 4, 5],
+//   [6, 7, 8],
+//   [0, 3, 6],
+//   [1, 4, 7], 
+//   [2, 5, 8], 
+//   [0, 4, 8],
+//   [2, 4, 6]
+// ];
 
 for (let i = 0; i < winConditions.length; i++) {
     let check =
-      board[winConditions[i][0]] === board[winConditions[i][1]]
-      &&
+      board[i][0] &&
+      board[winConditions[i][0]] === board[winConditions[i][1]] &&
       board[winConditions[i][0]] === board[winConditions[i][2]];
    if (check === true) {
      console.log(check);
