@@ -112,7 +112,7 @@ CONTROLLER:::::::
              RETURNS false? not a win
     * Player would have changed after click of tile, thus winner is the opposite player ? easier way?
 
-    3. IF boardClicks = 9
+    3. IF boardClicks = 9 // all tiles are filled
         THEN gameOver = true 
             AND display 'TIE'
 
