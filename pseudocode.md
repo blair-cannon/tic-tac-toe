@@ -126,3 +126,5 @@ TO DO LIST:
     * switch players
     * switch between x and o
     * reset game
+    * pull event listeners out of create ?
+    * bootstrap ??

@@ -7,8 +7,8 @@ class Model {
         this.player = 'Player 1';
         this.letter = 'X'
     }
-    setBoard(letter, tileId) {
-        this.board[tileId] = letter;
+    setBoard(i) {
+        this.board[i] = this.letter;
     }
 
     getBoard() {
@@ -80,9 +80,9 @@ class Controller {
     }
 
     checkForWin = () => {
+        console.log(this.m.board);
         for (let i = 0; i < this.m.winConditions.length; i++) {
             let check =
-                console.log(this.m.board);
                 this.m.board[i][0] &&
                 this.m.board[this.m.winConditions[i][0]] === this.m.board[this.m.winConditions[i][1]] &&
                 this.m.board[this.m.winConditions[i][0]] === this.m.board[this.m.winConditions[i][2]];
@@ -97,9 +97,9 @@ class Controller {
         // console.log(this);
         // console.log(this.m.player);
         e.target.innerHTML = `${this.m.letter}`;  
+        this.m.setBoard(e);   // update model to be used in checkForWin
+        this.checkForWin(); // check for win before switching player to know who wins
         this.m.switchPlayer();
-        this.checkForWin();
-        this.m.setBoard();
 
     }
 }
