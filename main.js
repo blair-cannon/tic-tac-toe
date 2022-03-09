@@ -7,8 +7,9 @@ class Model {
         this.player = 'Player 1';
         this.letter = 'X'
     }
-    setBoard(i) {
-        this.board[i] = this.letter;
+    setBoard(tileId) {
+        this.board[tileId] = this.letter;
+        
     }
 
     getBoard() {
@@ -54,6 +55,7 @@ class View {
       
           for (var j = 0; j < 3; j++) { // creating the tile spots 3 down
             var tile = document.createElement("button"); // create TILES as BUTTONS
+            tile.setAttribute("id", VALUE ????????????)
             tile.addEventListener('click', fn, {once:true});  
             var tileText = document.createTextNode(''); // create TEXTNODES for tiles
             tile.appendChild(tileText); // append tileText to tile
@@ -97,7 +99,7 @@ class Controller {
         // console.log(this);
         // console.log(this.m.player);
         e.target.innerHTML = `${this.m.letter}`;  
-        this.m.setBoard(e);   // update model to be used in checkForWin
+        this.m.setBoard(e.target.tileId???????????);   // update model to be used in checkForWin
         this.checkForWin(); // check for win before switching player to know who wins
         this.m.switchPlayer();
 
