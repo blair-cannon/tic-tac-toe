@@ -4,10 +4,10 @@ class Model {
         this.gameOver = false; // ?
         // this.turn = player1;
         this.board = ['', '', '', '', '', '', '', '', ''];
-        this.player = 'X';
+        this.player = 'Player 1';
+        this.letter = 'X'
     }
     setBoard(letter, tileId) {
-
         this.board[tileId] = letter;
     }
 
@@ -16,11 +16,13 @@ class Model {
     } 
 
     switchPlayer() {
-        if (this.player === 'X') {
-            this.player = 'O'
+        if (this.player === 'Player 1') {
+            this.player = 'Player 2';
+            this.letter = 'O'
         } 
-        else if (this.player === 'O') { // three equal signs for checking if true
-            this.player = 'X'           // one equal sign for assigning
+        else if (this.player === 'Player 2') { // three equal signs for checking if true
+            this.player = 'Player 1';
+            this.letter = 'X'           // one equal sign for assigning
         }
     }
 
@@ -80,10 +82,11 @@ class Controller {
     checkForWin = () => {
         for (let i = 0; i < this.m.winConditions.length; i++) {
             let check =
+                console.log(this.m.board);
                 this.m.board[i][0] &&
                 this.m.board[this.m.winConditions[i][0]] === this.m.board[this.m.winConditions[i][1]] &&
                 this.m.board[this.m.winConditions[i][0]] === this.m.board[this.m.winConditions[i][2]];
-            if (check = true) {
+            if (check === true) {
                 console.log(check);
             }
         }
@@ -93,9 +96,10 @@ class Controller {
         // console.log(e.target);
         // console.log(this);
         // console.log(this.m.player);
-        e.target.innerHTML = `${this.m.player}`;  
+        e.target.innerHTML = `${this.m.letter}`;  
         this.m.switchPlayer();
         this.checkForWin();
+        this.m.setBoard();
 
     }
 }
