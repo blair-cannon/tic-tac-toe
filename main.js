@@ -90,6 +90,7 @@ class View {
     }
 
     resetDOM() {
+        console.log(this);
         app.removeChild(this.tbl);
         // this.createBoard();
     }
@@ -135,16 +136,51 @@ class Controller {
 
     whenWin() {
         var winMessage = document.createElement('h1');
-        winMessage.setAttribute("class", "winMessage")
+        winMessage.setAttribute("class", "winMessage");
         document.body.appendChild(winMessage);
         winMessage.innerHTML = this.m.player + ' is the winner!'
     }
 
     resetGame() {
+        console.log(this);
         this.m.clearBoard();
         this.v.resetDOM();
         console.log(this.m.board);
+        // init function to redo player names 
     }
     
 }
 new Controller;
+
+function init() {
+    // create player 1 label and input box
+    var enterNames = document.createElement('p');
+    enterNames.setAttribute("class", "enterNames");
+    var label1 = document.createElement('label');
+    label1.setAttribute("for", "player1");
+    label1.innerHTML = "Player 1:";
+    var player1 = document.createElement('input');
+    player1.setAttribute("id", "player1");
+    player1.setAttribute("name", "player1");
+    player1.setAttribute("type", "text");
+
+    // create player 2 label and input box
+    var label2 = document.createElement('label');
+    label2.setAttribute("for", "player2");
+    label2.innerHTML = "Player 2:";
+    var player2 = document.createElement('input');
+    player2.setAttribute("id", "player2");
+    player2.setAttribute("name", "player2");
+    player2.setAttribute("type", "text");
+    label1.appendChild(player1);
+    label2.appendChild(player2);
+    enterNames.appendChild(label1);
+    enterNames.appendChild(label2);
+    document.body.appendChild(enterNames);
+
+    // create button
+    var goButton = document.createElement('button');
+    goButton.setAttribute("class", "btn btn-secondary");
+    goButton.innerHTML = "Ready to Play!";
+    enterNames.appendChild(goButton);
+}

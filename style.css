@@ -56,3 +56,38 @@ body {
     left: 42%;
     text-shadow: 2px 2px white;
 }
+
+.enterNames {
+    border-radius: 25px;
+    background: #73AD21;
+    width: 400px;
+    height: 300px;
+    font-size: 1em;
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    text-align: center;
+    text-transform: uppercase;
+    position: absolute;
+    top: 20%;
+    left: 36%;
+    z-index: 2;
+    box-shadow: 10px 10px grey;
+    animation: fadein 2s;
+}
+
+#player1 {
+    width: 250px;
+    height: 35px;
+    margin: 20px;
+    margin-top: 60px;
+}
+
+#player2 {
+    width: 250px;
+    height: 35px;
+    margin-top: 10px;
+    margin: 20px;
+    margin-bottom: 40px;
+}
+
+
