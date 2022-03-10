@@ -152,7 +152,8 @@ class Controller {
 }
 new Controller;
 
-function init() {
+    
+const init = function() { 
     // create player 1 label and input box
     var enterNames = document.createElement('p');
     enterNames.setAttribute("class", "enterNames");
@@ -183,4 +184,6 @@ function init() {
     goButton.setAttribute("class", "btn btn-secondary");
     goButton.innerHTML = "Ready to Play!";
     enterNames.appendChild(goButton);
+    
 }
+
