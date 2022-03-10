@@ -6,10 +6,11 @@
 }
 
 .mytable {
+    position: relative;
     margin-top: 100px;
     margin-left: auto;
     margin-right: auto;
-    outline: none;
+    z-index: 1;
 }
 
 #reset {
@@ -20,9 +21,38 @@
     position: absolute;
     top: 70%;
     left: 45%;
+    font-family: 'Courier New', monospace;
+    font-weight: 500;
+    border: 3px solid white;
 }
 
 body {
     background-color: lightblue;
 }
 
+.winMessage {
+    border-radius: 25px;
+    background: #73AD21;
+    padding: 20px;
+    width: 400px;
+    height: 300px;
+    font-size: 4em;
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    text-align: center;
+    text-transform: uppercase;
+    position: absolute;
+    top: 20%;
+    left: 36%;
+    z-index: 2;
+    box-shadow: 10px 10px grey;
+    animation: fadein 2s;
+
+}
+
+.header {
+    position: absolute;
+    top: 4%;
+    left: 42%;
+    text-shadow: 2px 2px white;
+}

@@ -49,7 +49,6 @@ class View {
   
         var tbl = document.createElement("table"); // creates a TABLE element 
         tbl.setAttribute("class", "mytable");
-        tbl.setAttribute("visibility", "visible");
       
         for (var i = 0; i < 3; i++) {  // creating the tile spots 3 across
           var row = document.createElement("tr"); // create ROW, moves in the horizontal direction, 3 across
@@ -67,8 +66,7 @@ class View {
           tbl.appendChild(row);  // append rows to table
         }
         document.body.appendChild(tbl); // append table to body
-      
-        // tbl.setAttribute("border", "2");   // sets the border of tbl, without table is just data without any lines
+    
         this.makePage();
     }
 
@@ -78,7 +76,13 @@ class View {
         resestButton.setAttribute("type", "button");
         resestButton.setAttribute("id", "reset");
         resestButton.innerHTML = "New Game";
-        document.body.appendChild(resestButton);  
+        document.body.appendChild(resestButton);
+        var header = document.createElement("h1");
+        header.setAttribute("class", "header");
+        header.innerHTML = "TIC TAC TOE";
+        document.body.appendChild(header); 
+
+        resestButton.addEventListener('click', resetGame);
     }
     
 }
@@ -120,7 +124,16 @@ class Controller {
     }
 
     whenWin() {
-        this.m.tbl.style.backgroundcolor = 'transparent';
+        var winMessage = document.createElement('h1');
+        winMessage.setAttribute("class", "winMessage")
+        document.body.appendChild(winMessage);
+        winMessage.innerHTML = this.m.player + ' is the winner!'
     }
+
+    resetGame() {
+        this.m.board = ['', '', '', '', '', '', '', '', ''];
+        this.v.tile.innerHTML = '';
+    }
+    
 }
 new Controller;

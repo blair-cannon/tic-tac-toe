@@ -124,8 +124,6 @@ CONTROLLER:::::::
 
 TO DO LIST: 
     * reset game
-    * bootstrap ??
-    * title
     * type in names for each player 
     * tic tac toe like borders
     * board appears in a cool way
