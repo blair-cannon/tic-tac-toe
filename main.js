@@ -18,11 +18,11 @@ class Model {
     switchPlayer() {
         if (this.player === 'Player 1') {
             this.player = 'Player 2';
-            this.letter = 'O'
+            this.letter = 'O';
         } 
         else if (this.player === 'Player 2') { // three equal signs for checking if true
             this.player = 'Player 1';
-            this.letter = 'X'           // one equal sign for assigning
+            this.letter = 'X';           // one equal sign for assigning
         }
     }
 
@@ -48,6 +48,8 @@ class View {
     createBoard = (fn) => {
   
         var tbl = document.createElement("table"); // creates a TABLE element 
+        tbl.setAttribute("class", "mytable");
+        tbl.setAttribute("visibility", "visible");
       
         for (var i = 0; i < 3; i++) {  // creating the tile spots 3 across
           var row = document.createElement("tr"); // create ROW, moves in the horizontal direction, 3 across
@@ -55,7 +57,7 @@ class View {
           for (var j = 0; j < 3; j++) { // creating the tile spots 3 down
             var tile = document.createElement("button"); // create TILES as BUTTONS
             tile.setAttribute("id", (3*i) + j); // set id for each tile 
-            console.log(tile.id);
+            tile.setAttribute("class", "tile");
             tile.addEventListener('click', fn, {once:true});  
             var tileText = document.createTextNode(''); // create TEXTNODES for tiles
             tile.appendChild(tileText); // append tileText to tile
@@ -66,8 +68,17 @@ class View {
         }
         document.body.appendChild(tbl); // append table to body
       
-        tbl.setAttribute("border", "2");   // sets the border of tbl, without table is just data without any lines
-    
+        // tbl.setAttribute("border", "2");   // sets the border of tbl, without table is just data without any lines
+        this.makePage();
+    }
+
+    makePage() {
+        var resestButton = document.createElement("button");
+        resestButton.setAttribute("class", "btn btn-dark");
+        resestButton.setAttribute("type", "button");
+        resestButton.setAttribute("id", "reset");
+        resestButton.innerHTML = "New Game";
+        document.body.appendChild(resestButton);  
     }
     
 }
@@ -91,6 +102,7 @@ class Controller {
                 this.m.board[win[0]] === this.m.board[win[2]]; 
             if (check) {
                 console.log(this.m.player + ' is the winner!');
+                this.whenWin();
                 return;
             }
         }
@@ -104,7 +116,11 @@ class Controller {
         this.m.setBoard(e.target.id);   // update model to be used in checkForWin
         this.checkForWin();             // check for win before switching player to know who wins
         this.m.switchPlayer();
+        
+    }
 
+    whenWin() {
+        this.m.tbl.style.backgroundcolor = 'transparent';
     }
 }
 new Controller;

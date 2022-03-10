@@ -1,5 +1,28 @@
-button {
-    height: 50px;
-    width: 50px;
-     vertical-align: top; /* buttons to not move on click */
+.tile {
+    height: 150px;
+    width: 150px;
+    vertical-align: top; /* buttons to not move on click */
+    font-size: 3em;
 }
+
+.mytable {
+    margin-top: 100px;
+    margin-left: auto;
+    margin-right: auto;
+    outline: none;
+}
+
+#reset {
+
+    width: 150px;
+    height: 60px;
+    font-size: 1.3em;
+    position: absolute;
+    top: 70%;
+    left: 45%;
+}
+
+body {
+    background-color: lightblue;
+}
+

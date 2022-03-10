@@ -127,3 +127,6 @@ TO DO LIST:
     * bootstrap ??
     * title
     * type in names for each player 
+    * tic tac toe like borders
+    * board appears in a cool way
+    * x and o be different colors
