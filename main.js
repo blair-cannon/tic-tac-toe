@@ -51,8 +51,8 @@ class View {
 
     createBoard = (fn) => {
   
-        var tbl = document.createElement("table"); // creates a TABLE element 
-        tbl.setAttribute("class", "mytable");
+        this.tbl = document.createElement("table"); // creates a TABLE element 
+        this.tbl.setAttribute("class", "mytable");
       
         for (var i = 0; i < 3; i++) {  // creating the tile spots 3 across
           var row = document.createElement("tr"); // create ROW, moves in the horizontal direction, 3 across
@@ -67,9 +67,9 @@ class View {
             row.appendChild(tile); // append tile to row
           }
          
-          tbl.appendChild(row);  // append rows to table
+          this.tbl.appendChild(row);  // append rows to table
         }
-        document.getElementById("app").appendChild(tbl); // append table to body
+        document.getElementById("app").appendChild(this.tbl); // append table to body
     
         this.makePage();
     }
@@ -90,9 +90,8 @@ class View {
     }
 
     resetDOM() {
-        console.log(this);
         app.removeChild(this.tbl);
-        // this.createBoard();
+        this.createBoard();
     }
     
 }
@@ -142,7 +141,6 @@ class Controller {
     }
 
     resetGame() {
-        console.log(this);
         this.m.clearBoard();
         this.v.resetDOM();
         console.log(this.m.board);
