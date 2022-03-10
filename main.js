@@ -8,7 +8,7 @@ class Model {
         this.letter = 'X'
     }
     setBoard(id) {
-        this.board[id] = this.letter;
+        this.board[id] = this.letter; 
     }
 
     getBoard() {
@@ -54,7 +54,7 @@ class View {
       
           for (var j = 0; j < 3; j++) { // creating the tile spots 3 down
             var tile = document.createElement("button"); // create TILES as BUTTONS
-            tile.setAttribute("id", (3*i) + j);
+            tile.setAttribute("id", (3*i) + j); // set id for each tile 
             console.log(tile.id);
             tile.addEventListener('click', fn, {once:true});  
             var tileText = document.createTextNode(''); // create TEXTNODES for tiles
@@ -82,14 +82,16 @@ class Controller {
     }
 
     checkForWin = () => {
-        console.log(this.m.board);
+        // console.log(this.m.board);
         for (let i = 0; i < this.m.winConditions.length; i++) {
+            let win = this.m.winConditions[i];
             let check =
-                this.m.board[i][0] &&
-                this.m.board[this.m.winConditions[i][0]] === this.m.board[this.m.winConditions[i][1]] &&
-                this.m.board[this.m.winConditions[i][0]] === this.m.board[this.m.winConditions[i][2]];
-            if (check === true) {
-                console.log(check);
+                this.m.board[win[0]] &&
+                this.m.board[win[0]] === this.m.board[win[1]] &&
+                this.m.board[win[0]] === this.m.board[win[2]]; 
+            if (check) {
+                console.log(this.m.player + ' is the winner!');
+                return;
             }
         }
     }
@@ -100,7 +102,7 @@ class Controller {
         // console.log(this.m.player);
         e.target.innerHTML = `${this.m.letter}`;  
         this.m.setBoard(e.target.id);   // update model to be used in checkForWin
-        this.checkForWin(); // check for win before switching player to know who wins
+        this.checkForWin();             // check for win before switching player to know who wins
         this.m.switchPlayer();
 
     }
