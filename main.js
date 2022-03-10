@@ -37,6 +37,10 @@ class Model {
         [2, 4, 6]
       ];
 
+    clearBoard() {
+        this.board = ['', '', '', '', '', '', '', '', ''];
+    }
+
 }
 
 //View
@@ -65,7 +69,7 @@ class View {
          
           tbl.appendChild(row);  // append rows to table
         }
-        document.body.appendChild(tbl); // append table to body
+        document.getElementById("app").appendChild(tbl); // append table to body
     
         this.makePage();
     }
@@ -84,6 +88,11 @@ class View {
 
         resetButton.addEventListener('click', fn2);
     }
+
+    resetDOM() {
+        app.removeChild(this.tbl);
+        // this.createBoard();
+    }
     
 }
 
@@ -94,7 +103,7 @@ class Controller {
         this.m = new Model();
         this.v = new View();
         this.v.createBoard(this.handlePlay)
-        this.v.makePage(this.resetGame)
+        this.v.makePage(this.resetGame.bind(this)) // binds to controller class
     }
 
     checkForWin = () => {
@@ -132,10 +141,9 @@ class Controller {
     }
 
     resetGame() {
-        this.m.board = ['', '', '', '', '', '', '', '', ''];
-        for (tile of this.v.tbl) {
-            tile.innerHTML = '';
-        }
+        this.m.clearBoard();
+        this.v.resetDOM();
+        console.log(this.m.board);
     }
     
 }
