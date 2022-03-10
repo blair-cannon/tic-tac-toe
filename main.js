@@ -70,19 +70,19 @@ class View {
         this.makePage();
     }
 
-    makePage() {
-        var resestButton = document.createElement("button");
-        resestButton.setAttribute("class", "btn btn-dark");
-        resestButton.setAttribute("type", "button");
-        resestButton.setAttribute("id", "reset");
-        resestButton.innerHTML = "New Game";
-        document.body.appendChild(resestButton);
+    makePage(fn2) {
+        var resetButton = document.createElement("button");
+        resetButton.setAttribute("class", "btn btn-dark");
+        resetButton.setAttribute("type", "button");
+        resetButton.setAttribute("id", "reset");
+        resetButton.innerHTML = "New Game";
+        document.body.appendChild(resetButton);
         var header = document.createElement("h1");
         header.setAttribute("class", "header");
         header.innerHTML = "TIC TAC TOE";
         document.body.appendChild(header); 
 
-        resestButton.addEventListener('click', resetGame);
+        resetButton.addEventListener('click', fn2);
     }
     
 }
@@ -94,6 +94,7 @@ class Controller {
         this.m = new Model();
         this.v = new View();
         this.v.createBoard(this.handlePlay)
+        this.v.makePage(this.resetGame)
     }
 
     checkForWin = () => {
@@ -132,7 +133,9 @@ class Controller {
 
     resetGame() {
         this.m.board = ['', '', '', '', '', '', '', '', ''];
-        this.v.tile.innerHTML = '';
+        for (tile of this.v.tbl) {
+            tile.innerHTML = '';
+        }
     }
     
 }
