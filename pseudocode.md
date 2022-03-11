@@ -123,7 +123,6 @@ CONTROLLER:::::::
 
 
 TO DO LIST: 
-    * reset game
     * type in names for each player 
     * tic tac toe like borders
     * board appears in a cool way

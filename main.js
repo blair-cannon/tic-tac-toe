@@ -108,18 +108,27 @@ class Controller {
     }
 
     checkForWin = () => {
-        // console.log(this.m.board);
         for (let i = 0; i < this.m.winConditions.length; i++) {
             let win = this.m.winConditions[i];
+            let board = this.m.board;
             let check =
-                this.m.board[win[0]] &&
-                this.m.board[win[0]] === this.m.board[win[1]] &&
-                this.m.board[win[0]] === this.m.board[win[2]]; 
+                board[win[0]] &&
+                board[win[0]] === board[win[1]] &&
+                board[win[0]] === board[win[2]]; 
             if (check) {
                 console.log(this.m.player + ' is the winner!');
                 this.whenWin();
                 return;
             }
+        }
+    }
+
+    checkForTie = () => {
+        const isBoardFull = (currentValue) => currentValue === 'X' || currentValue === 'O';
+        let tieCheck = this.m.board.every(isBoardFull);
+        if (tieCheck) {
+            this.whenTie();
+            return;
         }
     }
 
@@ -135,14 +144,31 @@ class Controller {
         closeButton.addEventListener('click', this.closeWin);
     }
 
-      closeWin = () => {
+    whenTie() {
+        this.tieMessage = document.createElement('h1');
+        this.tieMessage.setAttribute("class", "tieMessage");
+        app.appendChild(this.tieMessage);
+        this.tieMessage.innerHTML = 'The cat wins. Play again to break the tie!';
+        var closeTieButton = document.createElement('button');
+        closeTieButton.setAttribute("class", "closeTieButton");
+        closeTieButton.innerHTML = "Close";
+        this.tieMessage.appendChild(closeTieButton);
+        closeTieButton.addEventListener('click', this.closeTie);
+    }
+
+    closeWin = () => {
         app.removeChild(this.winMessage);
+    }
+
+    closeTie = () => {
+        app.removeChild(this.tieMessage);
     }
 
     handlePlay = (e) => {      // arrow function inherits this from controller
         e.target.innerHTML = `${this.m.letter}`;  
         this.m.setBoard(e.target.id);   // update model to be used in checkForWin
         this.checkForWin();             // check for win before switching player to know who wins
+        this.checkForTie();
         this.m.switchPlayer();
         
     }

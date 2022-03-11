@@ -50,6 +50,26 @@ body {
 
 }
 
+.tieMessage {
+    border-radius: 25px;
+    background: #73AD21;
+    padding: 20px;
+    width: 400px;
+    height: 300px;
+    font-size: 2.7em;
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    text-align: center;
+    text-transform: uppercase;
+    position: absolute;
+    top: 20%;
+    left: 36%;
+    z-index: 2;
+    box-shadow: 10px 10px grey;
+    animation: fadein 2s;
+
+}
+
 .header {
     position: absolute;
     top: 4%;
@@ -91,6 +111,15 @@ body {
 }
 
 .closeButton {
+    height: 30px;
+    width: max-content;
+    font-size: 20px;
+    position: absolute;
+    top: 250px;
+    left: 155px;
+}
+
+.closeTieButton {
     height: 30px;
     width: max-content;
     font-size: 20px;
