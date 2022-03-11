@@ -127,4 +127,3 @@ TO DO LIST:
     * tic tac toe like borders
     * board appears in a cool way
     * x and o be different colors
-    * handle tie
