@@ -3,12 +3,11 @@ const app = document.getElementById("app");
 // Model
 class Model {
     constructor() {
-        this.gameOver = false; // ?
-        // this.turn = player1;
         this.board = ['', '', '', '', '', '', '', '', ''];
         this.player = 'Player 1';
         this.letter = 'X'
     }
+
     setBoard(id) {
         this.board[id] = this.letter; 
     }
@@ -92,9 +91,9 @@ class View {
         this.tbl.setAttribute("class", "mytable");
       
         for (var i = 0; i < 3; i++) {  // creating the tile spots 3 across
-          var row = document.createElement("tr"); // create ROW, moves in the horizontal direction, 3 across
+            var row = document.createElement("tr"); // create ROW, moves in the horizontal direction, 3 across
       
-          for (var j = 0; j < 3; j++) { // creating the tile spots 3 down
+        for (var j = 0; j < 3; j++) { // creating the tile spots 3 down
             var tile = document.createElement("button"); // create TILES as BUTTONS
             tile.setAttribute("id", (3*i) + j); // set id for each tile 
             tile.setAttribute("class", "tile");
@@ -141,6 +140,15 @@ class Controller {
         this.v.createBoard(this.handlePlay);
         this.v.makePage(this.resetGame.bind(this)); // binds to controller class
         this.v.getPlayers(this.startGame);
+    }
+
+    handlePlay = (e) => {      // arrow function inherits this from controller
+        e.target.innerHTML = `${this.m.letter}`;  
+        this.m.setBoard(e.target.id);   // update model to be used in checkForWin
+        this.checkForWin();             // check for win before switching player to know who wins
+        this.checkForTie();
+        this.m.switchPlayer();
+        
     }
 
     startGame = () => {
@@ -202,15 +210,6 @@ class Controller {
 
     closeTie = () => {
         app.removeChild(this.tieMessage);
-    }
-
-    handlePlay = (e) => {      // arrow function inherits this from controller
-        e.target.innerHTML = `${this.m.letter}`;  
-        this.m.setBoard(e.target.id);   // update model to be used in checkForWin
-        this.checkForWin();             // check for win before switching player to know who wins
-        this.checkForTie();
-        this.m.switchPlayer();
-        
     }
 
     resetGame() {
