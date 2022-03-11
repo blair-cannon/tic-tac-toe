@@ -129,6 +129,7 @@ class Controller {
         app.appendChild(this.winMessage);
         this.winMessage.innerHTML = this.m.player + ' is the winner!';
         var closeButton = document.createElement('button');
+        closeButton.setAttribute("class", "closeButton");
         closeButton.innerHTML = "Close";
         this.winMessage.appendChild(closeButton);
         closeButton.addEventListener('click', this.closeWin);

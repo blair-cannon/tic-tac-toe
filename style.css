@@ -90,4 +90,11 @@ body {
     margin-bottom: 40px;
 }
 
-
+.closeButton {
+    height: 30px;
+    width: max-content;
+    font-size: 20px;
+    position: absolute;
+    top: 250px;
+    left: 155px;
+}
