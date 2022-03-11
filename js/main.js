@@ -92,18 +92,16 @@ class View {
       
         for (var i = 0; i < 3; i++) {  // creating the tile spots 3 across
             var row = document.createElement("tr"); // create ROW, moves in the horizontal direction, 3 across
-      
-        for (var j = 0; j < 3; j++) { // creating the tile spots 3 down
-            var tile = document.createElement("button"); // create TILES as BUTTONS
-            tile.setAttribute("id", (3*i) + j); // set id for each tile 
-            tile.setAttribute("class", "tile");
-            tile.addEventListener('click', fn, {once:true});  
-            var tileText = document.createTextNode(''); // create TEXTNODES for tiles
-            tile.appendChild(tileText); // append tileText to tile
-            row.appendChild(tile); // append tile to row
-          }
-         
-          this.tbl.appendChild(row);  // append rows to table
+            for (var j = 0; j < 3; j++) { // creating the tile spots 3 down
+                var tile = document.createElement("button"); // create TILES as BUTTONS
+                tile.setAttribute("id", (3*i) + j); // set id for each tile 
+                tile.setAttribute("class", "tile");
+                tile.addEventListener('click', fn, {once:true});  
+                var tileText = document.createTextNode(''); // create TEXTNODES for tiles
+                tile.appendChild(tileText); // append tileText to tile
+                row.appendChild(tile); // append tile to row
+            }
+            this.tbl.appendChild(row);  // append rows to table
         }
         app.appendChild(this.tbl); // append table to body
     
