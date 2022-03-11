@@ -1,3 +1,5 @@
+const app = document.getElementById("app");
+
 // Model
 class Model {
     constructor() {
@@ -69,7 +71,7 @@ class View {
          
           this.tbl.appendChild(row);  // append rows to table
         }
-        document.getElementById("app").appendChild(this.tbl); // append table to body
+        app.appendChild(this.tbl); // append table to body
     
         this.makePage();
     }
@@ -101,8 +103,8 @@ class Controller {
     constructor() {
         this.m = new Model();
         this.v = new View();
-        this.v.createBoard(this.handlePlay)
-        this.v.makePage(this.resetGame.bind(this)) // binds to controller class
+        this.v.createBoard(this.handlePlay);
+        this.v.makePage(this.resetGame.bind(this)); // binds to controller class
     }
 
     checkForWin = () => {
@@ -121,19 +123,27 @@ class Controller {
         }
     }
 
+    whenWin() {
+        this.winMessage = document.createElement('h1');
+        this.winMessage.setAttribute("class", "winMessage");
+        app.appendChild(this.winMessage);
+        this.winMessage.innerHTML = this.m.player + ' is the winner!';
+        var closeButton = document.createElement('button');
+        closeButton.innerHTML = "Close";
+        this.winMessage.appendChild(closeButton);
+        closeButton.addEventListener('click', this.closeWin);
+    }
+
+      closeWin = () => {
+        app.removeChild(this.winMessage);
+    }
+
     handlePlay = (e) => {      // arrow function inherits this from controller
         e.target.innerHTML = `${this.m.letter}`;  
         this.m.setBoard(e.target.id);   // update model to be used in checkForWin
         this.checkForWin();             // check for win before switching player to know who wins
         this.m.switchPlayer();
         
-    }
-
-    whenWin() {
-        var winMessage = document.createElement('h1');
-        winMessage.setAttribute("class", "winMessage");
-        document.body.appendChild(winMessage);
-        winMessage.innerHTML = this.m.player + ' is the winner!'
     }
 
     resetGame() {
