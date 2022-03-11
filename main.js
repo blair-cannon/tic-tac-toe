@@ -51,6 +51,41 @@ class View {
 
     }
 
+    getPlayers = (fn3) => {
+        // create player 1 label and input box
+        this.enterNames = document.createElement('p');
+        this.enterNames.setAttribute("class", "enterNames");
+        var label1 = document.createElement('label');
+        label1.setAttribute("for", "player1");
+        label1.innerHTML = "Player 1:";
+        var player1 = document.createElement('input');
+        player1.setAttribute("id", "player1");
+        player1.setAttribute("name", "player1");
+        player1.setAttribute("type", "text");
+
+        // create player 2 label and input box
+        var label2 = document.createElement('label');
+        label2.setAttribute("for", "player2");
+        label2.innerHTML = "Player 2:";
+        var player2 = document.createElement('input');
+        player2.setAttribute("id", "player2");
+        player2.setAttribute("name", "player2");
+        player2.setAttribute("type", "text");
+        label1.appendChild(player1);
+        label2.appendChild(player2);
+        this.enterNames.appendChild(label1);
+        this.enterNames.appendChild(label2);
+        app.appendChild(this.enterNames);
+
+        // create button
+        var goButton = document.createElement('button');
+        goButton.setAttribute("class", "btn btn-secondary");
+        goButton.innerHTML = "Ready to Play!";
+        this.enterNames.appendChild(goButton);
+        goButton.addEventListener('click', fn3);
+    }
+
+
     createBoard = (fn) => {
   
         this.tbl = document.createElement("table"); // creates a TABLE element 
@@ -105,6 +140,11 @@ class Controller {
         this.v = new View();
         this.v.createBoard(this.handlePlay);
         this.v.makePage(this.resetGame.bind(this)); // binds to controller class
+        this.v.getPlayers(this.startGame);
+    }
+
+    startGame = () => {
+        app.removeChild(this.v.enterNames);
     }
 
     checkForWin = () => {
@@ -183,43 +223,3 @@ class Controller {
 
 new Controller;
     
-class Init { 
-    getPlayers = () => {
-        // create player 1 label and input box
-        var enterNames = document.createElement('p');
-        enterNames.setAttribute("class", "enterNames");
-        var label1 = document.createElement('label');
-        label1.setAttribute("for", "player1");
-        label1.innerHTML = "Player 1:";
-        var player1 = document.createElement('input');
-        player1.setAttribute("id", "player1");
-        player1.setAttribute("name", "player1");
-        player1.setAttribute("type", "text");
-
-        // create player 2 label and input box
-        var label2 = document.createElement('label');
-        label2.setAttribute("for", "player2");
-        label2.innerHTML = "Player 2:";
-        var player2 = document.createElement('input');
-        player2.setAttribute("id", "player2");
-        player2.setAttribute("name", "player2");
-        player2.setAttribute("type", "text");
-        label1.appendChild(player1);
-        label2.appendChild(player2);
-        enterNames.appendChild(label1);
-        enterNames.appendChild(label2);
-        app.appendChild(enterNames);
-
-        // create button
-        var goButton = document.createElement('button');
-        goButton.setAttribute("class", "btn btn-secondary");
-        goButton.innerHTML = "Ready to Play!";
-        enterNames.appendChild(goButton);
-        goButton.addEventListener('click', startGame);
-    }
-
-}
-
-// const startGame = function() {
-//     app.removeChild(enterNames)
-// }
