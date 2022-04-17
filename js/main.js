@@ -82,6 +82,17 @@ class View {
         goButton.innerHTML = "Ready to Play!";
         this.enterNames.appendChild(goButton);
         goButton.addEventListener('click', fn3);
+
+        // create player display
+        var displayName1 = document.createElement('p');
+        var displayName2 = document.createElement('p');
+        // displayName1.setAttribute("class", "players myTurn");
+        // displayName2.setAttribute("class", "players");
+        // displayName1.innerHTML = "Player 1: " + player1.value
+        // displayName2.innerHTML = "Player 2: " + player2.value
+        document.body.appendChild(displayName1); 
+        document.body.appendChild(displayName2); 
+        
     }
 
 
@@ -140,17 +151,29 @@ class Controller {
         this.v.getPlayers(this.startGame);
     }
 
+    startGame = () => {
+        app.removeChild(this.v.enterNames);
+        displayName1.setAttribute("class", "players myTurn");
+        displayName2.setAttribute("class", "players");
+        displayName1.innerHTML = "Player 1: " + player1.value
+        displayName2.innerHTML = "Player 2: " + player2.value
+    }
+
     handlePlay = (e) => {      // arrow function inherits this from controller
         e.target.innerHTML = `${this.m.letter}`;  
         this.m.setBoard(e.target.id);   // update model to be used in checkForWin
         this.checkForWin();             // check for win before switching player to know who wins
         this.checkForTie();
+        // if (this.m.player == 'Player 1') {
+        //     console.log('hey')
+        //     displayName1.classList.remove('myTurn');
+        //     displayName2.classList.add('players myTurn');
+        // }
+        // else if (this.m.player == 'Player 2') {
+        //     displayName2.classList.remove('myTurn');
+        //     displayName1.classList.add('players myTurn');
+        // }
         this.m.switchPlayer();
-        
-    }
-
-    startGame = () => {
-        app.removeChild(this.v.enterNames);
     }
 
     checkForWin = () => {

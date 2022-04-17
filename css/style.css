@@ -127,3 +127,18 @@ body {
     top: 250px;
     left: 155px;
 }
+
+.players {
+    width: 250px;
+    height: 35px;
+    font-size: 1.5em;
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    text-align: center;
+    margin-left: 70px
+}
+
+.myTurn {
+    font-size: 1.8em;
+    background: #73AD21;
+}
