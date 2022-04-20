@@ -84,14 +84,14 @@ class View {
         goButton.addEventListener('click', fn3);
 
         // create player display
-        var displayName1 = document.createElement('p');
-        var displayName2 = document.createElement('p');
-        displayName1.setAttribute("class", "players myTurn");
-        displayName2.setAttribute("class", "players");
-        displayName1.innerHTML = "Player 1: " + player1.value
-        displayName2.innerHTML = "Player 2: " + player2.value
-        document.body.appendChild(displayName1); 
-        document.body.appendChild(displayName2); 
+        this.displayName1 = document.createElement('p');
+        this.displayName2 = document.createElement('p');
+        this.displayName1.setAttribute("class", "players myTurn");
+        this.displayName2.setAttribute("class", "players");
+        this.displayName1.innerHTML = "Player 1: " 
+        this.displayName2.innerHTML = "Player 2: "
+        document.body.appendChild(this.displayName1); 
+        document.body.appendChild(this.displayName2); 
         
     }
 
@@ -152,11 +152,9 @@ class Controller {
     }
 
     startGame = () => {
-        app.removeChild(this.v.enterNames);
-        this.v.displayName1.setAttribute("class", "players myTurn");
-        this.v.displayName2.setAttribute("class", "players");
         this.v.displayName1.innerHTML = "Player 1: " + player1.value
         this.v.displayName2.innerHTML = "Player 2: " + player2.value
+        app.removeChild(this.v.enterNames);
     }
 
     handlePlay = (e) => {      // arrow function inherits this from controller
@@ -165,13 +163,12 @@ class Controller {
         this.checkForWin();             // check for win before switching player to know who wins
         this.checkForTie();
         if (this.m.player == 'Player 1') {
-            console.log('hey')
             this.v.displayName1.classList.remove('myTurn');
-            this.v.displayName2.classList.add('players myTurn');
+            this.v.displayName2.classList.add('myTurn');
         }
         else if (this.m.player == 'Player 2') {
             this.v.displayName2.classList.remove('myTurn');
-            this.v.displayName1.classList.add('players myTurn');
+            this.v.displayName1.classList.add('myTurn');
         }
         this.m.switchPlayer();
     }
@@ -202,6 +199,8 @@ class Controller {
     }
 
     whenWin() {
+        document.body.removeChild(this.v.displayName1);
+        document.body.removeChild(this.v.displayName2);
         this.winMessage = document.createElement('h1');
         this.winMessage.setAttribute("class", "winMessage");
         app.appendChild(this.winMessage);
