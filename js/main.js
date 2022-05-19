@@ -86,7 +86,7 @@ class View {
         // create player display
         this.displayName1 = document.createElement('p');
         this.displayName2 = document.createElement('p');
-        this.displayName1.setAttribute("class", "players myTurn");
+        this.displayName1.setAttribute("class", "players");
         this.displayName2.setAttribute("class", "players");
         this.displayName1.innerHTML = "Player 1: " 
         this.displayName2.innerHTML = "Player 2: "
@@ -154,6 +154,8 @@ class Controller {
     startGame = () => {
         this.v.displayName1.innerHTML = "Player 1: " + player1.value
         this.v.displayName2.innerHTML = "Player 2: " + player2.value
+        this.v.displayName1.setAttribute("class", "players myTurn");
+        this.v.displayName2.setAttribute("class", "players");
         app.removeChild(this.v.enterNames);
     }
 
@@ -199,8 +201,6 @@ class Controller {
     }
 
     whenWin() {
-        document.body.removeChild(this.v.displayName1);
-        document.body.removeChild(this.v.displayName2);
         this.winMessage = document.createElement('h1');
         this.winMessage.setAttribute("class", "winMessage");
         app.appendChild(this.winMessage);
@@ -234,6 +234,8 @@ class Controller {
 
     resetGame() {
         this.m.clearBoard();
+        document.body.removeChild(this.v.displayName1);
+        document.body.removeChild(this.v.displayName2);
         this.v.resetDOM();
         new Controller;
     }
